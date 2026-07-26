@@ -1,0 +1,62 @@
+{
+  "model": "immortaltatsu/omura_emebd",
+  "dataset": "MS COCO val2014",
+  "num_candidate_images": 1000,
+  "seed": 42,
+  "distortions": {
+    "exact": {
+      "queries": 1000,
+      "old_embedding_only": {
+        "R@1": 1.0,
+        "R@5": 1.0,
+        "R@10": 1.0
+      },
+      "new_hash_verified": {
+        "exact_or_near_duplicate_accuracy": 0.885,
+        "hashable_queries": 1000,
+        "correctly_classified": 885
+      }
+    },
+    "near": {
+      "queries": 1000,
+      "old_embedding_only": {
+        "R@1": 1.0,
+        "R@5": 1.0,
+        "R@10": 1.0
+      },
+      "new_hash_verified": {
+        "exact_or_near_duplicate_accuracy": 0.172,
+        "hashable_queries": 1000,
+        "correctly_classified": 172
+      }
+    },
+    "hard_near": {
+      "queries": 1000,
+      "old_embedding_only": {
+        "R@1": 1.0,
+        "R@5": 1.0,
+        "R@10": 1.0
+      },
+      "new_hash_verified": {
+        "exact_or_near_duplicate_accuracy": 0.006,
+        "hashable_queries": 1000,
+        "correctly_classified": 6
+      }
+    }
+  },
+  "negatives": {
+    "negative_queries": 200,
+    "hashable": 200,
+    "false_positives": 0,
+    "false_positive_rate": 0.0
+  },
+  "improvement_summary": {
+    "old_duplicate_detection_accuracy": 0.0,
+    "new_exact_duplicate_accuracy": 0.885,
+    "new_near_duplicate_accuracy": 0.172,
+    "new_hard_near_duplicate_accuracy": 0.006,
+    "exact_improvement_percentage_points": 0.885,
+    "near_improvement_percentage_points": 0.172,
+    "hard_near_improvement_percentage_points": 0.006
+  }
+}
