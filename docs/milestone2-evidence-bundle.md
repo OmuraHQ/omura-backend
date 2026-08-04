@@ -89,6 +89,27 @@ over white to avoid transparent-PNG collisions), and classifies by Hamming dista
 i.e. the hash discriminates true duplicates from look-alikes. `provenance` correctly resolves the
 source blob/owner/collection.
 
+### 3a · Image-to-image retrieval under hard corruption (omura_emebd)
+
+Hard retrieval stress test: candidate pool = original images; queries = heavily corrupted
+versions (25% crop, 50% resize, JPEG Q15, Gaussian blur σ=1.5, color jitter 0.3). We compare
+pure-visual query embeddings against image+caption hybrid queries (caption weight 0.2) to isolate
+the effect of text descriptions on i2i retrieval.
+
+| Dataset | Direction / condition | R@1 | R@5 | R@10 | mAP |
+|---|---|---|---|---|---|
+| MS COCO val2014 1K | pure visual | **88.5%** | 96.4% | 98.2% | — |
+| MS COCO val2014 1K | image + caption hybrid | **91.4%** | 97.9% | 98.8% | — |
+| NFT1000 ALIENFRENS 2K | pure visual | **83.5%** | 97.1% | 98.9% | 89.5% |
+| NFT1000 ALIENFRENS 2K | image + caption hybrid | **82.4%** | 96.8% | 98.8% | 88.7% |
+
+**Interpretation.** On COCO, adding caption text improves R@1 by **+2.9 pp** (88.5% → 91.4%)
+under severe visual degradation, showing the hybrid signal is real on a standard benchmark. On
+NFT1000 ALIENFRENS the generic generated captions hurt slightly at weight 0.2, so the hardened
+pipeline for NFT provenance relies on the perceptual-hash duplicate confirmation (above) rather
+than caption blending. Results: `benchmarks/results/coco_i2i_hybrid_hard_1000.json`,
+`benchmarks/results/nft1000_i2i_hybrid_hard_2000.json`.
+
 ---
 
 ## 4 · Image Retrieval Accuracy — MS COCO 1K (SigLIP-based)
